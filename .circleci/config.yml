@@ -9,7 +9,6 @@ jobs:
       - persist_to_workspace:
           root: .
           paths: .
-
   build_image:
     working_directory: ~/anotherfizz
     docker:
@@ -22,8 +21,6 @@ jobs:
           sudo docker login -u popsoften -p $DOCKER_PASS
           sudo docker tag sayfizz2-latest popsoften/sayfizz2:latest
           sudo docker push popsoften/sayfizz2:latest
-
-
   unit_tests:
     working_directory: ~/anotherfizz
     docker:
