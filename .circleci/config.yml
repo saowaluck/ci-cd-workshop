@@ -21,6 +21,18 @@ jobs:
           sudo docker build -t sayfizz2-latest .
           sudo docker login -u popsoften -p $DOCKER_PASS
           sudo docker push popsoften/sayfizz2:latest
+  deploy:
+    working_directory: ~/anotherfizz
+    docker:
+      - image: circleci/python:3.6.1
+    steps:
+      - setup_remote_docker
+      - attach_workspace:
+          at: .
+      - run:
+          name: deploy via ssh
+          command: ./deploy
+
   unit_tests:
     working_directory: ~/anotherfizz
     docker:
