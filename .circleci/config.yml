@@ -18,9 +18,9 @@ jobs:
       - attach_workspace:
           at: .
       - run: |
-          sudo docker build -t sayfizz2-latest .
-          sudo docker login -u popsoften -p $DOCKER_PASS
-          sudo docker push popsoften/sayfizz2:latest
+          docker build -t sayfizz2-latest .
+          docker login -u popsoften -p $DOCKER_PASS
+          docker push popsoften/sayfizz2:latest
   deploy:
     working_directory: ~/anotherfizz
     docker:
