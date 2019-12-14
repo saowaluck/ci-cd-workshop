@@ -45,4 +45,4 @@ workflows:
             - checkout_code
       - build_image:
           requires:
-            - unit_test
+            - unit_tests
