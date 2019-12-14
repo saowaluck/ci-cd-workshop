@@ -17,9 +17,7 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - run:
-          name: Build Image
-          command: |
+      - run: |
           sudo docker build -t sayfizz2-latest .
           sudo docker login -u popsoften -p $DOKCER_PASS
           sudo docker tag sayfizz2-latest popsoften/sayfizz2:latest
