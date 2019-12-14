@@ -9,8 +9,21 @@ jobs:
       - persist_to_workspace:
           root: .
           paths: .
+
+  build_image:
+    working_directory: ~/anotherfizz
+    docker:
+      - image: circleci/python:3.6.1
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Build Image
+          command: sh build.sh
+
+
   unit_tests:
-    working_directory: ~/sayfizz
+    working_directory: ~/anotherfizz
     docker:
       - image: circleci/python:3.6.1
     steps:
@@ -19,6 +32,7 @@ jobs:
       - run:
           name: Run unittest
           command: python fizzbuzztest.py
+
 workflows:
   version: 2
   say-fizz-pipeline:
@@ -27,3 +41,6 @@ workflows:
       - unit_tests:
           requires:
             - checkout_code
+      - build_image:
+          requires:
+            - unit_test
