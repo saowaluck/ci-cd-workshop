@@ -20,8 +20,10 @@ jobs:
       - run: |
           docker build -t sayfizz2-latest .
           docker login -u popsoften -p $DOCKER_PASS
+          docker tag sayfizz2-latest popsoften/sayfizz2:latest
           docker push popsoften/sayfizz2:latest
-  deploy:
+
+  deploy_via_ssh:
     working_directory: ~/anotherfizz
     docker:
       - image: circleci/python:3.6.1
@@ -53,5 +55,8 @@ workflows:
           requires:
             - checkout_code
       - build_image:
+          requires:
+            - unit_tests
+      - deploy_via_ssh
           requires:
             - unit_tests
