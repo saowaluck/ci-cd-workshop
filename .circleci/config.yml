@@ -19,7 +19,11 @@ jobs:
           at: .
       - run:
           name: Build Image
-          command: sh build.sh
+          command: |
+          sudo docker build -t sayfizz2-latest .
+          sudo docker login -u popsoften -p $DOKCER_PASS
+          sudo docker tag sayfizz2-latest popsoften/sayfizz2:latest
+          sudo docker push popsoften/sayfizz2:latest
 
 
   unit_tests:
