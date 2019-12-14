@@ -57,6 +57,6 @@ workflows:
       - build_image:
           requires:
             - unit_tests
-      - deploy_via_ssh
+      - deploy_via_ssh:
           requires:
             - unit_tests
