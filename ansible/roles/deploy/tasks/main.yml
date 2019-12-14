@@ -1,0 +1,11 @@
+---
+- name: echo change
+  command: bash -c "docker ps"
+
+- name: copy docker compose file
+  copy:
+      src: "{{ path }}/docker-compose.yml"
+      dest: /home/ubuntu/docker-compose.yml
+
+- name: start application
+  command: bash -c "docker-compose up --build -d" 
